@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ task.task_name }}</title>
+</head>
+
+    <h2>{{ task.task_name }}</h2>
+
+    <dl>
+        <dt>Desciption: </dt>
+        <dd> {{ task.task_description|linebreaksbr }}</dd>
+        <dt>Due Date: </dt>
+        <dd>{{ task.task_due_date }}</dd>
+        <dt>Expected Time: </dt>
+        <dd>{{ task.task_time }}</dd>
+        <dt>Is Terminated: </dt>
+        <dd>{{ task.task_ended }}</dd>
+        <dt>Priority: </dt>
+        <dd>{{ task.task_priority }}</dd>
+    </dl>
+
+<a class="btn btn-primary" href="{% url 'todolist:edit' pk=task.pk %}"> Update Task </a>
+<a class="btn btn-primary" href="{% url 'todolist:delete' pk=task.pk %}"> Delete Task </a>
+
+{% endblock %}

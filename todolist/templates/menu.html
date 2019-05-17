@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="{% url 'todolist:list-list' %}">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1024px-Python-logo-notext.svg.png" width="30" height="30" class="d-inline-block align-top" alt="">
+          Task Manager
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        {% if user.is_authenticated %}
+          <dt class="nav-item active">
+            <a class="nav-link" href="#">Admin <span class="sr-only">(current)</span></a>
+          </dt>
+
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Tools
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{% url 'todolist:create' %}">Create Task</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="{% url 'todolist:list-create' %}">Create List</a>
+                </div>
+              </li>
+            </ul>
+        {% endif %}
+
+        {% if not user.is_authenticated %}
+          <dt class="nav-item active">
+            <a class="nav-link" href="{% url 'login' %}">Login <span class="sr-only">(current)</span></a>
+          </dt>
+        {% else %}
+          <dt class="nav-item active">
+            Bienvenue {{ user }}
+            <a class="nav-link" href="{% url 'logout' %}">Logout <span class="sr-only">(current)</span></a>
+          </dt>
+        {% endif %}
+
+      </div>
+    </nav>
+</html>

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ object.list_title }}</title>
+</head>
+
+    <h2>{{ object.list_title }}</h2>
+
+    <ul>
+        {% comment %}
+        {{ object.tasks.all|join:"<br>" }}
+        <a href="{% url 'todolist:go_to_description' pk=obj.pk %}">Show</a>
+        {% endcomment %}
+            {% for obj in object.tasks.all %}
+                {{ obj }}
+                <a href="{% url 'todolist:go_to_description' pk=obj.pk %}">Show</a>
+            <br>
+            {% endfor %}
+    </ul>
+
+    <a class="btn btn-primary" href="{% url 'todolist:list-edit' pk=object.pk %}"> Update List </a>
+    <a class="btn btn-primary" href="{% url 'todolist:list-delete' pk=object.pk %}"> Delete List </a>
+
+{% endblock %}

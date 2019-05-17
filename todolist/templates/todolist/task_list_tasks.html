@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>HomePage</title>
+</head>
+
+<body>
+    {% if task_lists %}
+    <h2>Available lists :</h2>
+        <ul>
+            {% for task_list in task_lists %}
+                <li>
+                    {{ task_list }}
+
+                    <a href="{% url 'todolist:go_to_list_content' task_list_id=task_list.pk %}"> Open</a>
+                </li>
+            {% endfor %}
+        </ul>
+
+    {% else %}
+        <p>
+            Nothing planed.
+        </p>
+    {% endif %}
+
+</body>
+
+{% endblock %}

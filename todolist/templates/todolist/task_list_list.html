@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>HomePage</title>
+</head>
+
+<body>
+    {% if object_list %}
+    <h2>Available lists :</h2>
+        <ul>
+            {% for list in object_list %}
+                <li>
+                    {{ list }}
+
+                    <a href="{% url 'todolist:list-detail' pk=list.pk %}"> Open</a>
+                </li>
+            {% endfor %}
+        </ul>
+
+    {% else %}
+        <p>
+            Nothing planed.
+        </p>
+    {% endif %}
+
+</body>
+
+{% endblock %}

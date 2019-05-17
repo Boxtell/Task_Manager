@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+<!--{% load static %}-->
+
+<!--<script src="{% static 'ContactFrom_v1/js/main.js' %}"></script>-->
+<!--<link href="{% static 'css/main.css' %}" rel="stylesheet">-->
+
+
+{% block content %}
+
+<form method="post">
+    {% csrf_token %}
+<!--    {% include 'date_picker.html' %}-->
+    {% bootstrap_form form %}
+    <input type="submit" value="{{ action }}">
+</form>
+
+{% endblock %}

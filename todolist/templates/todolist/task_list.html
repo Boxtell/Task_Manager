@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>HomePage</title>
+</head>
+
+<body>
+    {% if tasks %}
+    <h2>Tasks list :</h2>
+        <ul>
+            {% for task in tasks %}
+                <li>
+                    {{ task }}
+<!--                    <a  class="btn btn-primary" href="#{% url 'todolist:go_to_description' task_id=task.pk %}" >-->
+<!--                        Show-->
+<!--                    </a>-->
+                    <a href="{% url 'todolist:go_to_description' task_id=task.pk %}"> show</a>
+                </li>
+            {% endfor %}
+        </ul>
+
+    {% else %}
+        <p>
+            Nothing planed.
+        </p>
+    {% endif %}
+
+</body>
+
+{% endblock %}
